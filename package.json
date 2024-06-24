@@ -1,0 +1,28 @@
+{
+  "name": "devjops",
+  "version": "1.0.0",
+  "description": "Portal de trabajo con node js y react js",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Salgado Santiago Christopher",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "dropbox": "^10.34.0",
+    "express": "^4.19.2",
+    "firebase-admin": "^12.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.9.7",
+    "sanitize-filename": "^1.6.3",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
