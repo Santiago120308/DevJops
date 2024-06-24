@@ -1,8 +1,11 @@
 import admin from 'firebase-admin';
 import fs from 'fs';
 import {Postulaciones, PostulacionesVacantes} from '../Models/index.js'
+import dotenv from 'dotenv';
+dotenv.config();
 
-const serviceAccountPath = 'C:\\Users\\chris\\Torre-Node-proyectos\\DevJops\\Backend\\serviceAccountKey\\devjops-d2d32-firebase-adminsdk-2w7h6-09cefa47a6.json';
+
+const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT
 const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
 
 admin.initializeApp({
