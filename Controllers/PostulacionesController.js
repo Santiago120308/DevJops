@@ -2,18 +2,41 @@ import admin from 'firebase-admin';
 import fs from 'fs';
 import {Postulaciones, PostulacionesVacantes} from '../Models/index.js'
 import dotenv from 'dotenv';
+import axios from 'axios'
 dotenv.config();
 
+const url = process.env.FIREBASE_SERVICE_ACCOUNT;
+let serviceAccountPath;
+let bucket;
 
-const serviceAccountPath = process.env.FIREBASE_SERVICE_ACCOUNT
-const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
+const tomarArchivo = async () => {
+  try{
+      const {data} = await axios(url);
+      serviceAccountPath = data;
+      return serviceAccountPath;
+  }catch(e){
+      console.log(e)
+  }
+}
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    storageBucket: 'gs://devjops-d2d32.appspot.com' // Reemplaza con tu bucket de Firebase Storage
-});
 
-const bucket = admin.storage().bucket();
+(async () => {
+
+    try {
+        const serviceAccount = await tomarArchivo();
+
+        admin.initializeApp({
+            credential: admin.credential.cert(serviceAccount),
+            storageBucket: 'gs://devjops-d2d32.appspot.com' // Reemplaza con tu bucket de Firebase Storage
+        });
+
+        bucket = admin.storage().bucket();
+
+    } catch (error) {
+        console.error('No se pudo obtener el serviceAccount:', error);
+    }
+})();
+
 
 const agregarPostulacion = async (req, res) => {
 
