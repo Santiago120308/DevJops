@@ -26,7 +26,7 @@ console.log(`Servidor corriendo en el puerto ${port}`)
 //cors
 
 
-const whiteList = [process.env.FRONTED_URL, 'https://dev-jops-frontend-9qloasjw8-santiagos-projects-d0b72e0d.vercel.app'];
+const whiteList = [process.env.FRONTED_URL, 'https://dev-jops-frontend.vercel.app'];
 
 const corsOptions = {
     origin: function (origin, callback) {
